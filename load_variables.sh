@@ -2,9 +2,9 @@
 SERVER=104.197.168.71
 APP_DIR=/var/www/hellogov
 ARCHIVE_DIR=/home/hellogov/archive
-GIT_URL=git://github.com/helloGov/singleAction
-REMOTE_SCRIPT_PATH=/tmp/deploy-myapp.sh
-KEY_FILE_PATH=~/.ssh/hellogov.id
+GIT_URL="git://github.com/helloGov/singleAction"
+REMOTE_SCRIPT_PATH=/tmp
+KEY_FILE_PATH=~/.ssh/gc
 
 function usage {
 	echo "Usage: $0 -server=\$SERVER_IP_ADDRESS -key=\$PATH_TO_KEY_FILE"
