@@ -1,5 +1,5 @@
 # default values
-SERVER=104.197.168.71
+SERVER=104.199.132.136 
 APP_DIR=/var/www/hellogov
 ARCHIVE_DIR=/home/hellogov/archive
 GIT_URL="git://github.com/helloGov/singleAction"

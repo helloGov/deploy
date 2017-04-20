@@ -1,6 +1,6 @@
 {
   "apps" : [{
     "name"        : "hellogov",
-    "script"      : "./index.js"
+    "script"      : "/var/www/hellogov/app/index.js"
   }]
 }
