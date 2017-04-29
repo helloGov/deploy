@@ -6,10 +6,10 @@ source /tmp/load_variables.sh
 
 set -x
 whoami
-##TODO: stop PM2 process -- how do we know the process ID? 
+##TODO: stop PM2 process -- how do we know the process ID?
 pm2 stop $REMOTE_SCRIPT_PATH/ecosystem.config.json
 
-# place old code in 
+# place old code in
 arch_current_path=$ARCHIVEDIR/$(date +%m_%d_%Y_%H_%M)
 
 
@@ -30,5 +30,6 @@ fi
 cp $REMOTE_SCRIPT_PATH/secrets.js ./
 npm install #--production
 #npm prune --production
+npm run build
 
 pm2 start $REMOTE_SCRIPT_PATH/ecosystem.config.json
