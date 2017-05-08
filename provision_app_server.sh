@@ -27,6 +27,8 @@ sudo chown hellogov:hellogov $APP_DIR
 sudo -u hellogov mkdir -p $ARCHIVE_DIR
 
 git clone $GIT_DEPLOY_URL $REMOTE_SCRIPT_PATH/deploy
+sudo chown hellogov:hellogov $REMOTE_SCRIPT_PATH/deploy
+sudo chmod u+x *.sh
 
 cd /home/hellogov
 #sudo -u hellogov npm install pm2@latest -g

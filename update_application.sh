@@ -3,7 +3,7 @@
 
 echo "running $0 on remote server"
 
-source $REMOTE_SCRIPT_PATH/deploy/load_variables.sh
+source /tmp/deploy/load_variables.sh
 
 # Pull deploy scripts
 echo "updating deploy scripts"
