@@ -20,14 +20,14 @@ pm2 stop $REMOTE_SCRIPT_PATH/ecosystem.config.json --env production
 
 
 # place old code in
-arch_current_path=$ARCHIVEDIR/$(date +%m_%d_%Y_%H_%M)
+arch_current_path=$ARCHIVE_DIR/$(date +%m_%d_%Y_%H_%M)
 
 # Pull latest code
 if [ -d $APP_DIR/app ]; then
   echo "updating app"
   cd $APP_DIR/app
   mkdir -p $arch_current_path
-  mv * $arch_current_path
+  cp  -r * $arch_current_path
   git pull
 else
   echo "cloning app"
@@ -36,10 +36,11 @@ else
 fi
 
 # Install dependencies
-cp $HOME/secrets.js ./
+cp $REMOTE_SCRIPT_PATH/secrets.js ./
 npm install #--production
 #npm prune --production
 npm run build
+npm rebuild node-sass
 
 pm2 start $REMOTE_SCRIPT_PATH/ecosystem.config.json --env production
 service ngnix start
