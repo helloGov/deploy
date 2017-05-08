@@ -15,8 +15,9 @@ source $REMOTE_SCRIPT_PATH/deploy/load_variables.sh
 
 set -x
 whoami
-##TODO: stop PM2 process -- how do we know the process ID?
-pm2 stop $REMOTE_SCRIPT_PATH/deploy/ecosystem.config.json
+service nginx stop
+pm2 stop $REMOTE_SCRIPT_PATH/ecosystem.config.json --env production
+
 
 # place old code in
 arch_current_path=$ARCHIVEDIR/$(date +%m_%d_%Y_%H_%M)
@@ -40,4 +41,5 @@ npm install #--production
 #npm prune --production
 npm run build
 
-pm2 start $REMOTE_SCRIPT_PATH/deploy/ecosystem.config.json
+pm2 start $REMOTE_SCRIPT_PATH/ecosystem.config.json --env production
+service ngnix start

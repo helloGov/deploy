@@ -9,8 +9,10 @@ sudo apt-get install rubygems-integration -y
 # SSL
 wget https://dl.eff.org/certbot-auto
 chmod a+x certbot-auto
+
 # FIXME: don't hard code domain name
 ./certbot-auto certonly --standalone -d $DOMAIN_NAME
+#sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 
 # nginx
 sudo apt-get install nginx
