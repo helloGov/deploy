@@ -15,8 +15,7 @@ source $REMOTE_SCRIPT_PATH/deploy/load_variables.sh
 
 set -x
 whoami
-service nginx stop
-pm2 stop $REMOTE_SCRIPT_PATH/ecosystem.config.json --env production
+pm2 stop $REMOTE_SCRIPT_PATH/deploy/ecosystem.config.json --env production
 
 
 # place old code in
@@ -36,11 +35,12 @@ else
 fi
 
 # Install dependencies
-cp $REMOTE_SCRIPT_PATH/secrets.js ./
+cp $REMOTE_SCRIPT_PATH/deploy/secrets.js ./
 npm install #--production
 #npm prune --production
 npm run build
 npm rebuild node-sass
 
-pm2 start $REMOTE_SCRIPT_PATH/ecosystem.config.json --env production
-service ngnix start
+pm2 start $REMOTE_SCRIPT_PATH/deploy/ecosystem.config.json --env production
+
+pm2 stop /tmp/deploy/ecosystem.config.json --env production

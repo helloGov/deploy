@@ -7,6 +7,7 @@ GIT_DEPLOY_URL="git://github.com/helloGov/deploy"
 REMOTE_SCRIPT_PATH=/tmp
 KEY_FILE_PATH=~/.ssh/gc
 DOMAIN_NAME=staging.heyagov.org
+EMAIL=hellogoveng@gmail.com
 
 function usage {
 	echo "Usage: $0 -server=\$SERVER_IP_ADDRESS -keyfile=\$PATH_TO_KEY_FILE"
@@ -23,6 +24,10 @@ case $i in
     ;;
     -keyfile=*|--keyfile=*)
     KEY_FILE_PATH="${i#*=}"
+    shift
+    ;;
+    -domain=*|--domain=*)
+    DOMAIN_NAME="${i#*=}"
     shift
     ;;
     *)
