@@ -1,5 +1,5 @@
 #expects ubuntu 16.04
-# expects a firewall rule opening port 27017 to application servers 
+# expects a firewall rule opening port 27017 to application servers
 source /tmp/load_variables.sh
 source /tmp/secrets.sh
 
