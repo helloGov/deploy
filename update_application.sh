@@ -15,7 +15,7 @@ source $REMOTE_SCRIPT_PATH/deploy/load_variables.sh
 
 set -x
 whoami
-pm2 stop $REMOTE_SCRIPT_PATH/deploy/ecosystem.config.json
+pm2 stop $REMOTE_SCRIPT_PATH/deploy/conf/ecosystem.config.json
 
 
 # place old code in
@@ -41,4 +41,4 @@ npm install #--production
 npm run build
 npm rebuild node-sass
 
-pm2 start $REMOTE_SCRIPT_PATH/deploy/ecosystem.config.json
+pm2 start $REMOTE_SCRIPT_PATH/deploy/conf/ecosystem.config.json
