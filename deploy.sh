@@ -18,4 +18,5 @@ run ssh $KEYARG $SERVER "sudo chown hellogov:hellogov $REMOTE_SCRIPT_PATH/deploy
 
 echo
 echo "---- Running deployment script on remote server ----"
+run ssh $KEYARG $SERVER "sudo chmod u+x $REMOTE_SCRIPT_PATH/deploy/update_application.js"
 run ssh $KEYARG $SERVER "sudo -H -u hellogov $REMOTE_SCRIPT_PATH/deploy/update_application.sh"
