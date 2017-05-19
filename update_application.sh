@@ -36,8 +36,7 @@ fi
 
 # Install dependencies
 cp $REMOTE_SCRIPT_PATH/deploy/secrets.js ./
-npm install #--production
-#npm prune --production
+npm install
 npm run build
 npm rebuild node-sass
 
