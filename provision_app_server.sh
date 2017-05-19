@@ -23,11 +23,11 @@ sudo chown hellogov:hellogov $REMOTE_SCRIPT_PATH/deploy
 sudo chmod o+w $REMOTE_SCRIPT_PATH/deploy
 find $REMOTE_SCRIPT_PATH/deploy/*.sh -type f -exec sudo chmod u+x  {} \; 
 
-sed -i -e 's/###DOMAIN_NAME###/'"$DOMAIN_NAME"'/g' $REMOTE_SCRIPT_PATH/deploy/nginx/hellogov.conf 
+sed -i -e 's/###DOMAIN_NAME###/'"$DOMAIN_NAME"'/g' $REMOTE_SCRIPT_PATH/deploy/conf/nginx/hellogov.conf
 
 # nginx
 sudo apt-get install nginx -y
-sudo cp $REMOTE_SCRIPT_PATH/deploy/nginx/hellogov.conf /etc/nginx/sites-available/hellogov.conf
+sudo cp $REMOTE_SCRIPT_PATH/deploy/conf/nginx/hellogov.conf /etc/nginx/sites-available/hellogov.conf
 sudo ln -s /etc/nginx/sites-available/hellogov.conf /etc/nginx/sites-enabled/hellogov.conf
 sudo service nginx reload
 
