@@ -1,9 +1,6 @@
 {
   "apps" : [{
     "name"        : "hellogov",
-    "script"      : "/var/www/hellogov/app/index.js",
-    env: {
-      "NODE_ENV": "development",
-    }
+    "script"      : "/var/www/hellogov/app/index.js"
   }]
 }
