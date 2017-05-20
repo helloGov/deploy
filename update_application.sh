@@ -3,20 +3,11 @@
 
 echo "running $0 on remote server"
 
-source /tmp/deploy/load_variables.sh
-
-# Pull deploy scripts
-echo "updating deploy scripts"
-cd $REMOTE_SCRIPT_PATH/deploy
-git pull origin master
-
-# load the vars again in case any changed during git pull
-source $REMOTE_SCRIPT_PATH/deploy/load_variables.sh
+source /home/hellogov/deploy/conf/load_variables.sh
 
 set -x
 whoami
-pm2 stop $REMOTE_SCRIPT_PATH/deploy/conf/ecosystem.config.json
-
+pm2 stop $REMOTE_SCRIPT_PATH/conf/ecosystem.config.json --env production
 
 # place old code in
 arch_current_path=$ARCHIVE_DIR/$(date +%m_%d_%Y_%H_%M)
@@ -35,9 +26,9 @@ else
 fi
 
 # Install dependencies
-cp $REMOTE_SCRIPT_PATH/deploy/secrets.js ./
+cp $REMOTE_SCRIPT_PATH/conf/secrets.js ./
 npm install
 npm run build
 npm rebuild node-sass
 
-pm2 start $REMOTE_SCRIPT_PATH/deploy/conf/ecosystem.config.json
+pm2 start $REMOTE_SCRIPT_PATH/conf/ecosystem.config.json --env production

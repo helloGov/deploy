@@ -11,7 +11,9 @@ chmod a+x certbot-auto
 ./certbot-auto certonly --non-interactive --standalone -d $DOMAIN_NAME -d www.$DOMAIN_NAME --email $EMAIL --agree-tos
 #sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
 
+sudo groupadd deploy
 sudo useradd -m hellogov
+sudo usermod -append --groups deploy
 
 sudo mkdir -p $APP_DIR
 sudo chown hellogov:hellogov $APP_DIR

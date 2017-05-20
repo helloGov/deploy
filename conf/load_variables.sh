@@ -4,10 +4,11 @@ APP_DIR=/var/www/hellogov
 ARCHIVE_DIR=/home/hellogov/archive
 GIT_URL="git://github.com/helloGov/singleAction"
 GIT_DEPLOY_URL="git://github.com/helloGov/deploy"
-REMOTE_SCRIPT_PATH=/tmp
+REMOTE_SCRIPT_PATH=/home/hellogov/deploy
 KEY_FILE_PATH=~/.ssh/gc
 DOMAIN_NAME=staging.heyagov.org
 EMAIL=hellogoveng@gmail.com
+REMOTE_SCRIPT=update_application.sh
 
 function usage {
 	echo "Usage: $0 -server=\$SERVER_IP_ADDRESS -keyfile=\$PATH_TO_KEY_FILE"
@@ -26,6 +27,10 @@ case $i in
     KEY_FILE_PATH="${i#*=}"
     shift
     ;;
+    -script=*|--script=*)
+    REMOTE_SCRIPT="${i#*=}"
+    shift
+        ;;
     -domain=*|--domain=*)
     DOMAIN_NAME="${i#*=}"
     shift

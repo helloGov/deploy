@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source load_variables.sh
+source conf/load_variables.sh
 
 function run()
 {
@@ -10,13 +10,16 @@ function run()
 
 KEY_ARG="-i $KEY_FILE_PATH"
 
-# remove and copy secrets file to remote server
-run ssh $KEY_ARG $SERVER "sudo [ -f $REMOTE_SCRIPT_PATH/deploy/secrets.js ] && rm $REMOTE_SCRIPT_PATH/deploy/secrets.js"
-run scp $KEY_ARG secrets.js $SERVER:$REMOTE_SCRIPT_PATH/deploy/secrets.js
-run ssh $KEYARG $SERVER "sudo chmod o+w $REMOTE_SCRIPT_PATH/deploy/secrets.js"
-run ssh $KEYARG $SERVER "sudo chown hellogov:hellogov $REMOTE_SCRIPT_PATH/deploy/secrets.js"
+# remove and copy conf folder to remote server
+run ssh $KEY_ARG $SERVER "sudo [ -d $REMOTE_SCRIPT_PATH/conf ] && sudo rm -r $REMOTE_SCRIPT_PATH/conf"
+run scp $KEY_ARG -r conf $SERVER:$REMOTE_SCRIPT_PATH/conf
+run ssh $KEYARG $SERVER "sudo find $REMOTE_SCRIPT_PATH/conf -type f -exec chown hellogov:hellogov {} \;"
 
-echo
+#remove and copy remote script to remove server
+run ssh $KEY_ARG $SERVER "sudo [ -f $REMOTE_SCRIPT_PATH/$REMOTE_SCRIPT ] && rm -r $REMOTE_SCRIPT_PATH/$REMOTE_SCRIPT"
+run scp $KEY_ARG $REMOTE_SCRIPT $SERVER:$REMOTE_SCRIPT_PATH/$REMOTE_SCRIPT
+run ssh $KEYARG $SERVER "sudo chown hellogov $REMOTE_SCRIPT_PATH/$REMOTE_SCRIPT"
+
 echo "---- Running deployment script on remote server ----"
-run ssh $KEYARG $SERVER "sudo chmod u+x $REMOTE_SCRIPT_PATH/deploy/update_application.js"
-run ssh $KEYARG $SERVER "sudo -H -u hellogov $REMOTE_SCRIPT_PATH/deploy/update_application.sh"
+run ssh $KEYARG $SERVER "sudo chmod u+x $REMOTE_SCRIPT_PATH/$REMOTE_SCRIPT"
+run ssh $KEYARG $SERVER "sudo -H -u hellogov $REMOTE_SCRIPT_PATH/$REMOTE_SCRIPT"
