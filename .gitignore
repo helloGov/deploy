@@ -1,2 +1,5 @@
 secrets.js
 secrets.sh
+mongodb.pem
+env.js
+

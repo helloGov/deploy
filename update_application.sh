@@ -26,7 +26,8 @@ else
 fi
 
 # Install dependencies
-cp $REMOTE_SCRIPT_PATH/conf/secrets.js ./
+cp $REMOTE_SCRIPT_PATH/conf/secrets.js ./conf/
+cp $REMOTE_SCRIPT_PATH/conf/env.js ./conf/env.js
 npm install
 npm run build
 npm rebuild node-sass
