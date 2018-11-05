@@ -4,7 +4,7 @@ source `pwd`/conf/secrets.sh
 
 # Setup database directory
 sudo mkdir -p /data/db
-sudo chmod -R 757 /data/db
+sudo chmod -R 646 /data/db
 
 # Stop an existing mongo instance
 pgrep mongod | xargs kill -2
