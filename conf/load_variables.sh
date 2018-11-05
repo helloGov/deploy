@@ -1,6 +1,7 @@
 # default values
 SERVER=104.199.132.136
 APP_DIR=/var/www/hellogov
+LOCAL_APP_DIR=$(pwd)
 ARCHIVE_DIR=/home/hellogov/archive
 GIT_URL="git://github.com/helloGov/singleAction"
 GIT_DEPLOY_URL="git://github.com/helloGov/deploy"
